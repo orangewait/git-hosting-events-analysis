@@ -57,13 +57,15 @@ Avvio
 	4) Scegliere una delle componenti batch fra quelle presenti nella cartella components,
 		ovvero una fra Kafka-Cassandra-Spark, Kafka-MongoDB, Kafka-MongoDB-Spark.
 	
-		4.1) Avviare il relativo demone (ad esempio, nel caso di Cassandra basta lanciare `cassandra`)
+		4.1) Spostarsi nella cartella scelta
+		
+		4.2) Avviare il relativo demone (ad esempio, nel caso di Cassandra basta lanciare `cassandra`)
 
-		4.2) Avviare KafkaPipe.java (su Linux : `mvn exec:java -Dexec.mainClass="KafkaPipe"`)
+		4.3) Avviare KafkaPipe.java (su Linux : `mvn exec:java -Dexec.mainClass="KafkaPipe"`)
 
-		4.3) Avviare KafkaConsumerXXXWriter.java (su Linux : `mvn exec:java -Dexec.mainClass="KafkaConsumerXXXWriter"`)
+		4.4) Avviare KafkaConsumerXXXWriter.java (su Linux : `mvn exec:java -Dexec.mainClass="KafkaConsumerXXXWriter"`)
 	
-		4.4) Avviare XXXClient.java (su Linux : `mvn exec:java -Dexec.mainClass="XXXClient"`)
+		4.5) Avviare XXXClient.java (su Linux : `mvn exec:java -Dexec.mainClass="XXXClient"`)
 
 	5) Scegliere ed avviare una delle due componenti streaming, Storm o SparkStreaming
 
