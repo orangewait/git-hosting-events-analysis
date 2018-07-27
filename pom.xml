@@ -17,7 +17,7 @@
 		<module>components/Kafka-MongoDB</module>
 		<module>components/Kafka-MongoDB-Spark</module>
 		<module>components/Kafka-Storm</module>
-		<!-- <module>components/Kafka-SparkStreaming</module> -->
+		 <module>components/Kafka-SparkStreaming</module>
 	</modules>
 
 	<build>
