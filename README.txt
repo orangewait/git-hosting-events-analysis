@@ -1,0 +1,73 @@
+GIT HOSTING EVENTS ANALYSIS
+
+
+
+Progetto finale del corso di Big Data 2017/2018
+Gruppo Tusonti
+D. Ponti, E. Tusoni
+
+
+
+==============
+Requisiti
+==============
+
+	Bisogna installare i seguenti software :
+
+	- Apache Zookeper
+	- Apache Kafka
+	- MongoDB
+	- Apache Cassandra
+	- Apache Spark
+
+
+
+==============
+Installazione
+==============
+
+Linux :
+	
+	Da questa cartella, usando un terminale, lanciare "mvn package".
+	Maven provvederà a scaricare tutte le librerie necessarie e a compilare i sorgenti.
+	Può richiedere qualche minuto dovuto al download delle librerie.
+
+
+
+==============
+Avvio
+==============
+
+	Avendo implementato un'architettura modulare esistono diverse combinazioni
+	di componenti alternativi fra loro (ad esempio : Cassandra e MongoDB).
+	Per questo è possibile avviare ogni singolo componente separatamente dagli altri.
+	Segue uno schema generale per l'avvio :
+
+	1) Avviare Zookeeper (su Linux : `sudo zkServer.sh start`)
+
+	2) Avviare Kafka (su Linux : `kafka-server-start.sh /usr/share/kafka/config/server.properties`)
+
+	3) Se non esistono già, creare due kafka topic, github-stream-input e github-stream-output
+		(
+		Su Linux : 
+		`kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic github-stream-input` 
+		`kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic github-stream-output`
+		) 
+
+	4) Scegliere una delle componenti batch fra quelle presenti nella cartella components,
+		ovvero una fra Kafka-Cassandra-Spark, Kafka-MongoDB, Kafka-MongoDB-Spark.
+	
+		4.1) Avviare il relativo demone (ad esempio, nel caso di Cassandra basta lanciare `cassandra`)
+
+		4.2) Avviare KafkaPipe.java (su Linux : `mvn exec:java -Dexec.mainClass="KafkaPipe"`)
+
+		4.3) Avviare KafkaConsumerXXXWriter.java (su Linux : `mvn exec:java -Dexec.mainClass="KafkaConsumerXXXWriter"`)
+	
+		4.4) Avviare XXXClient.java (su Linux : `mvn exec:java -Dexec.mainClass="XXXClient"`)
+
+	5) Scegliere ed avviare una delle due componenti streaming, Storm o SparkStreaming
+
+	6) Avviare una o più istanze del generatore pseudocasuale di json. Produce json simili a quelli di github e gitlab.
+		Si trova in	components/json-data-generator-1.3.0/ (su Linux : `java -jar json-data-generator-130.jar githubSimConfig.json`)
+
+
